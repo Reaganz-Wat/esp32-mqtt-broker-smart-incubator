@@ -1,0 +1,12 @@
+services:
+  mosquitto:
+    build: .
+    container_name: mqtt_broker
+    ports:
+      - "1883:1883"   # Standard MQTT (ESP32)
+      - "8883:8883"   # MQTT over TLS
+      - "9001:9001"   # WebSocket (mobile app / web dashboard)
+    volumes:
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: unless-stopped
